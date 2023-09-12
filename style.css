@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    /* border: 5px solid red; */
+    margin: 20px 3px;
+    font-size: larger;
+}
+
+.timer-text, .timer-font {
+    float: right;
+}
+
+main { 
+    text-align: center;
+    font-size: 30px;
+}
+
+.starting-text {
+    font-size: 25px;
+    margin: 45px;
+}
+
+.start-button {
+    font-size: 19px;
+    background-color: rgb(129, 29, 129);
+    color: white;
+    padding: 3px;
+    border-radius: 8px;
+}
+
+.start-button:hover {
+    color: rgb(182, 180, 180);
+}

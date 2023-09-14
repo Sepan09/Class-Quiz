@@ -15,7 +15,9 @@ header {
 }
 
 main { 
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
     font-size: 30px;
 }
 
@@ -34,4 +36,12 @@ main {
 
 .start-button:hover {
     color: rgb(182, 180, 180);
+}
+
+.question {
+    display: none;
+}
+
+.button {
+    display: grid;
 }

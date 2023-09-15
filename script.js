@@ -9,6 +9,10 @@ var answersE1 = document.querySelector(".answers");
 var isWin = false;
 var timer;
 var timerCount;
+var correct = [];
+var wrong = [];
+
+
 
 let shuffledQuestions, currentQuestionIndex
 
@@ -30,16 +34,24 @@ var questionArr = [
             {text: "strings", correct: false},
             {text: "booleans", correct:false}
         ]
-    }
+    },
+    {
+        question: "Arrays in JavaScript can be used to store _____.",
+        answer: [
+            {text: "booleans", correct: false},
+            {text: "other arrays", correct: false},
+            {text: "numbers and strings", correct: false},
+            {text: "all of the above", correct:true}
+        ]
+    },
 ]
 
 startButtonLabel.addEventListener("click", startGame);
 
-
 function startGame(event) {
     event.preventDefault();
     isWin = false;
-    timerCount = 40;
+    timerCount = 30;
     // mainE1.style.display = "none";
     staringTextLabel.style.display = "none";
     challengeTextLabel.style.display = "none";
@@ -51,28 +63,49 @@ function startGame(event) {
 
     nextQuestion();
     startTimer();
-}
+};
 
 function startTimer() {
     timer =setInterval(function() {
         timerCount--;
         timeLabel.textContent = timerCount;
-        if (timerCount ===0) {
+        if (timerCount <= 0) {
             clearInterval(timer);
+            endGame();
         }
     }, 1000);
-}
+};
 
-function nextQuestion() {
-    showQuestion(shuffledQuestions[currentQuestionIndex]);
-    if ( questionArr.answer === true) {
-        currentQuestionIndex++
-        nextQuestion();
+function nextQuestion(event) {
+    currentQuestionIndex++;
+
+    if (event) {
+        var correctAnswer = event.target.dataset.correct === 'true';
+    
+        console.log(correctAnswer);
+        if (correctAnswer) {
+            timerCount = timerCount + 15;
+            correct.push(correctAnswer);
+        } else {
+            timerCount = timerCount - 15;
+            wrong.push(correctAnswer);
+        }
+
     }
+
+
+    if(currentQuestionIndex === shuffledQuestions.length) {
+        endGame();
+        return;
+    }
+
+    showQuestion(shuffledQuestions[currentQuestionIndex]);
+    // questionArr[currentQuestionIndex];
 };
 
 function showQuestion(question) {
     questionE1.innerText = question.question
+    answersE1.innerHTML = '';
 
     var answersArr = question.answer;
 
@@ -83,21 +116,29 @@ function showQuestion(question) {
         btnEl.textContent = answerObj.text;
         btnEl.setAttribute("data-correct", answerObj.correct);
         btnEl.setAttribute('class', "button")
-        
         answersE1.appendChild(btnEl);
+        btnEl.addEventListener("click", nextQuestion);
     }
 
-}
+};
 
 function selectAnswer () {
     var selectedButton = target;
     var correct = selectedButton.dataset.correct;
-}
+};
 
-function winGame() {
 
-}
+function endGame() {
+    console.log('end game');
+    questionE1.innerHTML = '';
+    answersE1.innerHTML = '';
+    clearInterval(timer);
 
-function loseGame() {
 
+    // add form for scores
+    mainE1.innerHTML = `
+    <h1> All Done!</h1>
+    <input type="text" />
+    <button id="submit-btn">Submit</button>
+    ` 
 }

@@ -16,7 +16,7 @@ header {
 
 main { 
     display: flex;
-    justify-content: center;
+    text-align: center;
     width: 100%;
     font-size: 30px;
 }
@@ -24,6 +24,7 @@ main {
 .starting-text {
     font-size: 25px;
     margin: 45px;
+    padding: 0 35%;
 }
 
 .start-button {
@@ -38,10 +39,15 @@ main {
     color: rgb(182, 180, 180);
 }
 
+.end-game {
+    display: none;
+}
+
 .question {
     display: none;
 }
 
+
 .button {
-    display: grid;
+    /* display: grid; */
 }

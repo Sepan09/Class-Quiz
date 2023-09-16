@@ -33,21 +33,37 @@ main {
     color: white;
     padding: 3px;
     border-radius: 8px;
+    width: 100px;
+    margin: 0 auto;
 }
 
 .start-button:hover {
     color: rgb(182, 180, 180);
 }
 
-.end-game {
-    display: none;
-}
-
 .question {
     display: none;
 }
 
+.answers {
+    /* max-width: 500px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
 
 .button {
-    /* display: grid; */
+    /* display: flex; */
+    width: 225px;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 10px;
+
+    /* justify-content: center; */
+    align-content: center;
+    background-color: rgb(129, 29, 129);
+    color: white;
+    
 }

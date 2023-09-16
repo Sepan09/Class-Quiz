@@ -5,6 +5,8 @@ var challengeTextLabel = document.querySelector(".center-piece");
 var mainE1 = document.querySelector(".main");
 var questionE1 = document.querySelector(".question");
 var answersE1 = document.querySelector(".answers");
+// var endBtn = document.getElementById('submit-btn');
+var playerEl = JSON.parse(localStorage.getItem('highScores')) || [];
 
 var isWin = false;
 var timer;
@@ -44,6 +46,15 @@ var questionArr = [
             {text: "all of the above", correct:true}
         ]
     },
+    {
+        question: "How can you make a button clickable ?",
+        answer: [
+            {text: "click", correct: false},
+            {text: "innerhtml", correct: false},
+            {text: "setAttribute", correct: false},
+            {text: "addEventListener", correct:true}
+        ]
+    },
 ]
 
 startButtonLabel.addEventListener("click", startGame);
@@ -77,11 +88,11 @@ function startTimer() {
 };
 
 function nextQuestion(event) {
-    currentQuestionIndex++;
 
+    
     if (event) {
         var correctAnswer = event.target.dataset.correct === 'true';
-    
+        
         console.log(correctAnswer);
         if (correctAnswer) {
             timerCount = timerCount + 15;
@@ -90,16 +101,17 @@ function nextQuestion(event) {
             timerCount = timerCount - 15;
             wrong.push(correctAnswer);
         }
-
+        
     }
-
-
+    
+    
     if(currentQuestionIndex === shuffledQuestions.length) {
         endGame();
         return;
     }
-
     showQuestion(shuffledQuestions[currentQuestionIndex]);
+    currentQuestionIndex++;
+
     // questionArr[currentQuestionIndex];
 };
 
@@ -116,16 +128,23 @@ function showQuestion(question) {
         btnEl.textContent = answerObj.text;
         btnEl.setAttribute("data-correct", answerObj.correct);
         btnEl.setAttribute('class', "button")
-        answersE1.appendChild(btnEl);
         btnEl.addEventListener("click", nextQuestion);
+        answersE1.appendChild(btnEl);
     }
 
 };
 
-function selectAnswer () {
-    var selectedButton = target;
-    var correct = selectedButton.dataset.correct;
-};
+function scoreSheet () {
+    var playerScore = document.querySelector('.score').value;
+    console.log(playerScore);
+    var obj = {
+        initials: playerScore, 
+        score: correct.length
+    }
+    playerEl.push(obj);
+    localStorage.setItem('highScores', JSON.stringify(playerEl));
+    window.location.replace('./highscores.html')
+}
 
 
 function endGame() {
@@ -133,12 +152,16 @@ function endGame() {
     questionE1.innerHTML = '';
     answersE1.innerHTML = '';
     clearInterval(timer);
+    // endEl.style.display = 'block';
 
 
     // add form for scores
     mainE1.innerHTML = `
     <h1> All Done!</h1>
-    <input type="text" />
-    <button id="submit-btn">Submit</button>
+    <p>Your final score is ${correct.length}</p>
+    Enter initial: <input class = 'score' type="text" />
+    <button id="submit-btn" onclick = 'scoreSheet()'>Submit</button>
     ` 
+
+
 }

@@ -6,3 +6,4 @@
 ![Alt text](Assets/QuizPage.png)
 
 # Website
+https://sepan09.github.io/Class-Quiz/

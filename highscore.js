@@ -26,7 +26,7 @@ for (var i = 0; i < playerArr.length; i++) {
 }
 
 function Previous() {
-
-}
+    window.location.replace('./index.html');
+};
 
 lastPage.addEventListener('click', Previous);

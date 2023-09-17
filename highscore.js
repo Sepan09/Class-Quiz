@@ -13,8 +13,8 @@ var playerArr = playerEl;
 for (var i = 0; i < playerArr.length; i++) {
     var playerObj = playerArr[i];
 
-    var btnPlayer = document.createElement("list");
-    btnPlayer.textContent = playerObj.text;
+    var btnPlayer = document.createElement("li");
+    btnPlayer.textContent = playerObj.initials, playerObj.score;
     btnPlayer.setAttribute('class', "player-record")
     scoreRec.appendChild(btnPlayer);
 }

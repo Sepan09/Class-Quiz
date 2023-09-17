@@ -1,0 +1,19 @@
+
+.scored-1 {
+    /* display: flex; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.player-record {
+    width: 225px;
+    margin: 3px;
+    border: 3px;
+    border-radius: 5px;
+    padding: 10px;
+    align-content: center;
+    background-color: rgb(238, 229, 219);
+}
